@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2a81b9b4e4b08d60d6a9c07237d11a6c",
+    "revision": "ee582eacd9478294a2eee1b6c8c42c2c",
     "url": "/westmarches/index.html"
   },
   {
-    "revision": "70d59645eab19d0b96ae",
+    "revision": "e6fe365daaf90913c4bb",
     "url": "/westmarches/static/css/main.6b684a32.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/westmarches/static/js/2.27206a16.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "70d59645eab19d0b96ae",
-    "url": "/westmarches/static/js/main.13917c74.chunk.js"
+    "revision": "e6fe365daaf90913c4bb",
+    "url": "/westmarches/static/js/main.5a290e16.chunk.js"
   },
   {
     "revision": "5c15d31c05001f558136",
