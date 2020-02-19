@@ -16,7 +16,6 @@ export const Main = styled.main`
 
 export const East = styled.section`
   flex: 1;
-  background: lawngreen;
   opacity: 0.1;
 `;
 
@@ -27,11 +26,6 @@ export const West = styled.section`
   justify-content: center;
   overflow: visible;
   z-index: 1;
-  background: radial-gradient(
-    circle at bottom center,
-    rgb(150, 150, 190),
-    rgb(255, 255, 255)
-  );
 `;
 
 export const Board = styled.div`
@@ -95,4 +89,16 @@ export const Hex = styled.div`
     border-left: ${HEX_RADIUS}px solid transparent;
     border-right: ${HEX_RADIUS}px solid transparent;
   }
+`;
+
+export const HexTitle = styled.h2`
+  font-size: 16px;
+  color: white;
+`;
+
+export const HexDescription = styled.p`
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 375px;
+  white-space: normal;
 `;
