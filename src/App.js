@@ -99,7 +99,7 @@ function App() {
       <West className="hex-container">
         <Board>
           {data.map((row, i) => (
-            <HexRow key={i} className={cx({ odd: i % 2 === 1, hidden: i < 3 })}>
+            <HexRow key={i} className={cx({ odd: i % 2 === 1 })}>
               {row.map((hex, j) => {
                 return (
                   <Hex
@@ -117,14 +117,14 @@ function App() {
             </HexRow>
           ))}
           <HexRow odd>
-            {Array(10)
+            {Array(20)
               .fill({})
               .map((row, i) => (
                 <Hex
                   key={`bottom-${i}`}
                   data-tip="React-tooltip"
                   color={"#383838"}
-                  className={cx({ hidden: i !== 5 })}
+                  className={cx({ hidden: i !== 10 })}
                 />
               ))}
           </HexRow>

@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 import { BOARD_SIZE } from "./constants";
 
-const TRIANGLE_HEIGHT = 15;
-const HEX_RADIUS = 26;
-const HEX_MARGIN = 3;
+const TRIANGLE_HEIGHT = 7.5;
+const HEX_RADIUS = 13;
+const HEX_MARGIN = 1.5;
 
 export const Main = styled.main`
   background: lightgray;
@@ -30,7 +30,7 @@ export const West = styled.section`
 
 export const Board = styled.div`
   width: ${(HEX_RADIUS + HEX_MARGIN) * 2 * BOARD_SIZE}px;
-  transform: perspective(900px) rotateX(60deg) translateY(120px);
+  transform: perspective(900px) rotateX(60deg) translateY(200px);
 `;
 
 export const HexRow = styled.div`
