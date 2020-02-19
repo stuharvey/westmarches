@@ -107,7 +107,11 @@ function App() {
                     data-tip="React-tooltip"
                     data-row={i}
                     data-col={j}
-                    color={hex?.color || "transparent"}
+                    color={
+                      hex?.fogOfWar === "TRUE"
+                        ? "slategray"
+                        : hex?.color || "transparent"
+                    }
                     onMouseOver={onMouseOver}
                     onMouseOut={onMouseOut}
                     className={cx({ hidden: !hex?.title })}
@@ -134,12 +138,20 @@ function App() {
       <East />
 
       <ReactTooltip type="dark">
-        <HexTitle>{hovered.title}</HexTitle>
-        {hovered.description.split("\\n").map(description => (
-          <HexDescription key={description.substring(0, 20)}>
-            {description}
+        {hovered.fogOfWar === "TRUE" ? (
+          <HexDescription>
+            Uncharted territory. Explore at your own risk.
           </HexDescription>
-        ))}
+        ) : (
+          <>
+            <HexTitle>{hovered.title}</HexTitle>
+            {hovered.description.split("\\n").map(description => (
+              <HexDescription key={description.substring(0, 20)}>
+                {description}
+              </HexDescription>
+            ))}
+          </>
+        )}
       </ReactTooltip>
     </Main>
   );
