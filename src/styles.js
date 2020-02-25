@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import _ReactTooltip from "react-tooltip";
 
 import { BOARD_SIZE } from "./constants";
 
@@ -93,12 +94,54 @@ export const Hex = styled.div`
 
 export const HexTitle = styled.h2`
   font-size: 16px;
-  color: white;
+  color: black;
+  margin: 0;
+  padding-right: 48px;
 `;
 
 export const HexDescription = styled.p`
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 375px;
+  color: rgba(0, 0, 0, 0.87);
   white-space: normal;
+`;
+
+export const HexContainer = styled.section`
+  margin: 8px;
+  max-width: 375px;
+`;
+
+export const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Location = styled.span`
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 10px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 44px;
+  width: 48px;
+  text-align: right;
+  background: linear-gradient(30deg, transparent 42px, transparent 0) bottom
+    left;
+  padding: 2px;
+  border-radius: 0 4px 0 0;
+`;
+
+export const ReactTooltip = styled(_ReactTooltip)`
+  &.__react_component_tooltip.type-light {
+    background: #eee;
+    padding: 0;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+    border-radius: 4px;
+
+    &.place-top::after {
+      display: none;
+    }
+  }
 `;

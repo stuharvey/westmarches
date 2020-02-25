@@ -1,6 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
 import cx from "classnames";
-import ReactTooltip from "react-tooltip";
 import axios from "axios";
 
 import {
@@ -11,7 +10,11 @@ import {
   HexRow,
   Board,
   HexTitle,
-  HexDescription
+  HexDescription,
+  HexContainer,
+  Header,
+  Location,
+  ReactTooltip
 } from "./styles";
 import { BOARD_SIZE } from "./constants";
 
@@ -93,7 +96,6 @@ function App() {
     [data]
   );
   const onMouseOut = useCallback(() => setHovered(DEFAULT_HOVER), []);
-
   return (
     <Main>
       <West className="hex-container">
@@ -137,21 +139,33 @@ function App() {
 
       <East />
 
-      <ReactTooltip type="dark">
-        {hovered.fogOfWar === "TRUE" ? (
-          <HexDescription>
-            Uncharted territory. Explore at your own risk.
-          </HexDescription>
-        ) : (
-          <>
-            <HexTitle>{hovered.title}</HexTitle>
-            {hovered.description.split("\\n").map(description => (
-              <HexDescription key={description.substring(0, 20)}>
-                {description}
-              </HexDescription>
-            ))}
-          </>
-        )}
+      <ReactTooltip type="light">
+        <HexContainer>
+          {hovered.fogOfWar === "TRUE" ? (
+            <HexDescription>
+              <Location>
+                {hovered.location[0]}, {hovered.location[1]}
+              </Location>
+              Uncharted territory. Explore at your own risk.
+            </HexDescription>
+          ) : (
+            <>
+              <Header>
+                <HexTitle>{hovered.title}</HexTitle>
+                {hovered.location && (
+                  <Location>
+                    {hovered.location[0]}, {hovered.location[1]}
+                  </Location>
+                )}
+              </Header>
+              {hovered.description.split("\\n").map(description => (
+                <HexDescription key={description.substring(0, 20)}>
+                  {description}
+                </HexDescription>
+              ))}
+            </>
+          )}
+        </HexContainer>
       </ReactTooltip>
     </Main>
   );
