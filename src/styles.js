@@ -95,19 +95,20 @@ export const Hex = styled.div`
 export const HexTitle = styled.h2`
   font-size: 16px;
   color: black;
-  margin: 0;
-  padding-right: 48px;
+  margin: 8px;
 `;
 
 export const HexDescription = styled.p`
   font-size: 14px;
   color: rgba(0, 0, 0, 0.87);
   white-space: normal;
+  margin: 8px;
 `;
 
 export const HexContainer = styled.section`
-  margin: 8px;
-  max-width: 375px;
+  margin: 0;
+  max-width: 300px;
+  overflow: hidden;
 `;
 
 export const Header = styled.header`
@@ -115,20 +116,29 @@ export const Header = styled.header`
   justify-content: space-between;
 `;
 
-export const Location = styled.span`
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 10px;
+export const HexInfo = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 44px;
-  width: 48px;
-  text-align: right;
-  background: linear-gradient(30deg, transparent 42px, transparent 0) bottom
-    left;
-  padding: 2px;
-  border-radius: 0 4px 0 0;
+  font-size: 10px;
+  line-height: 18px;
+  padding: 0 8px;
+
+  background: #ddd;
+  border-radius: 0 0 4px 4px;
+`;
+
+export const Location = styled.p`
+  margin: 0;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.87);
+`;
+
+export const TerrainType = styled.p`
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
 `;
 
 export const ReactTooltip = styled(_ReactTooltip)`
