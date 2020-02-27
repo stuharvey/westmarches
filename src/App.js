@@ -1,9 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import HexTooltip from "./components/HexTooltip";
 import Board from "./components/Board";
-import { Main, East, West } from "./styles";
+import Navbar from "./components/Navbar";
+import { Main } from "./styles";
 import { BOARD_SIZE } from "./constants";
 
 const BOARD = Array(BOARD_SIZE).fill(Array(BOARD_SIZE).fill({}));
@@ -109,18 +111,25 @@ function App() {
   const onMouseOut = useCallback(() => setHovered(DEFAULT_HOVER), []);
 
   return (
-    <Main>
-      <West>
-        <Board
-          hexData={hexData}
-          terrainMapping={terrainMapping}
-          onMouseOver={onMouseOver}
-          onMouseOut={onMouseOut}
-        />
-      </West>
-      <East />
-      <HexTooltip hovered={hovered} />
-    </Main>
+    <Router>
+      <Main>
+        <Navbar />
+
+        <Switch>
+          <Route path="/players">Coming soon!</Route>
+          <Route path="/pawn">Coming later!</Route>
+          <Route path="/">
+            <Board
+              hexData={hexData}
+              terrainMapping={terrainMapping}
+              onMouseOver={onMouseOver}
+              onMouseOut={onMouseOut}
+            />
+            <HexTooltip hovered={hovered} />
+          </Route>
+        </Switch>
+      </Main>
+    </Router>
   );
 }
 
