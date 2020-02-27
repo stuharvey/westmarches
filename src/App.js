@@ -15,7 +15,8 @@ import {
   HexInfo,
   Location,
   ReactTooltip,
-  TerrainType
+  TerrainType,
+  HexLevel
 } from "./styles";
 import { BOARD_SIZE } from "./constants";
 
@@ -72,7 +73,8 @@ function parseTileSheet(data) {
   const zipped = hexes.map(hex => zip(header, hex));
   return zipped.map(hex => ({
     ...hex,
-    location: hex.location.split(",").map(n => parseInt(n.trim()))
+    location: hex.location.split(",").map(n => parseInt(n.trim())),
+    hexLevel: hex.hexLevel !== "-" ? parseInt(hex.hexLevel) : 0
   }));
 }
 
@@ -83,6 +85,10 @@ function parseTerrainSheet(data) {
     terrainTypes[terrainObj.terrainType] = terrainObj;
     return terrainTypes;
   }, {});
+}
+
+function getHexClass(level = 0) {
+  return level > 3 ? "high" : level > 1 ? "medium" : "low";
 }
 
 function App() {
@@ -181,6 +187,11 @@ function App() {
                 </HexDescription>
               ))}
             </>
+          )}
+          {hovered?.hexLevel > 0 && (
+            <HexLevel className={getHexClass(hovered.hexLevel)}>
+              {hovered.hexLevel}
+            </HexLevel>
           )}
           {(hovered.location || hovered.terrainType) && (
             <HexInfo>

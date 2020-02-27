@@ -96,6 +96,7 @@ export const HexTitle = styled.h2`
   font-size: 16px;
   color: black;
   margin: 8px;
+  margin-right: 28px;
 `;
 
 export const HexDescription = styled.p`
@@ -153,5 +154,35 @@ export const ReactTooltip = styled(_ReactTooltip)`
     &.place-top::after {
       display: none;
     }
+  }
+`;
+
+export const HexLevel = styled.div`
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 10px;
+  font-weight: bold;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 36px;
+  width: 36px;
+  text-align: right;
+  padding: 2px;
+  border-radius: 0 4px 0 0;
+
+  &.low {
+    background: linear-gradient(45deg, transparent 36px, palegreen 0) bottom
+      left;
+  }
+
+  &.medium {
+    background: linear-gradient(45deg, transparent 36px, khaki 0) bottom left;
+  }
+
+  &.high {
+    background: linear-gradient(45deg, transparent 36px, lightcoral 0) bottom
+      left;
+    color: white;
   }
 `;
