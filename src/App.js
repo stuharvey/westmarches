@@ -1,23 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
-import cx from "classnames";
 import axios from "axios";
 
-import {
-  Main,
-  East,
-  West,
-  Hex,
-  HexRow,
-  Board,
-  HexTitle,
-  HexDescription,
-  HexContainer,
-  HexInfo,
-  Location,
-  ReactTooltip,
-  TerrainType,
-  HexLevel
-} from "./styles";
+import HexTooltip from "./components/HexTooltip";
+import Board from "./components/Board";
+import { Main, East, West } from "./styles";
 import { BOARD_SIZE } from "./constants";
 
 const BOARD = Array(BOARD_SIZE).fill(Array(BOARD_SIZE).fill({}));
@@ -87,13 +73,9 @@ function parseTerrainSheet(data) {
   }, {});
 }
 
-function getHexClass(level = 0) {
-  return level > 3 ? "high" : level > 1 ? "medium" : "low";
-}
-
 function App() {
   const [hovered, setHovered] = useState(DEFAULT_HOVER);
-  const [data, setData] = useState(BOARD);
+  const [hexData, setHexData] = useState(BOARD);
   const [terrainMapping, setTerrainMapping] = useState({});
 
   useEffect(() => {
@@ -107,7 +89,7 @@ function App() {
         const { location } = hex;
         dataCopy[location[0]][location[1]] = hex;
       });
-      setData(dataCopy);
+      setHexData(dataCopy);
       setTerrainMapping(terrain);
     }
     getData();
@@ -119,98 +101,25 @@ function App() {
       const row = parseInt(target.getAttribute("data-row"));
       const col = parseInt(target.getAttribute("data-col"));
 
-      setHovered({ ...data[row][col] });
+      setHovered({ ...hexData[row][col] });
     },
-    [data]
+    [hexData]
   );
 
   const onMouseOut = useCallback(() => setHovered(DEFAULT_HOVER), []);
+
   return (
     <Main>
-      <West className="hex-container">
-        <Board>
-          {data.map((row, i) => (
-            <HexRow key={i} className={cx({ odd: i % 2 === 1 })}>
-              {row.map((hex, j) => {
-                return (
-                  <Hex
-                    key={`${i}-${j}`}
-                    data-tip="React-tooltip"
-                    data-row={i}
-                    data-col={j}
-                    color={
-                      hex?.fogOfWar === "TRUE"
-                        ? "slategray"
-                        : hex?.color !== "-"
-                        ? hex.color
-                        : hex?.terrainType !== "-"
-                        ? terrainMapping[hex.terrainType]?.color
-                        : "transparent"
-                    }
-                    onMouseOver={onMouseOver}
-                    onMouseOut={onMouseOut}
-                    className={cx({ hidden: !hex?.title })}
-                  />
-                );
-              })}
-            </HexRow>
-          ))}
-          <HexRow odd>
-            {Array(20)
-              .fill({})
-              .map((row, i) => (
-                <Hex
-                  key={`bottom-${i}`}
-                  data-tip="React-tooltip"
-                  color={"#383838"}
-                  className={cx({ hidden: i !== 10 })}
-                />
-              ))}
-          </HexRow>
-        </Board>
+      <West>
+        <Board
+          hexData={hexData}
+          terrainMapping={terrainMapping}
+          onMouseOver={onMouseOver}
+          onMouseOut={onMouseOut}
+        />
       </West>
-
       <East />
-
-      <ReactTooltip type="light">
-        <HexContainer>
-          {hovered.fogOfWar === "TRUE" ? (
-            <HexDescription>
-              Uncharted territory. Explore at your own risk.
-            </HexDescription>
-          ) : (
-            <>
-              <HexTitle>{hovered.title}</HexTitle>
-              {hovered.description.split("\\n").map(description => (
-                <HexDescription key={description.substring(0, 20)}>
-                  {description}
-                </HexDescription>
-              ))}
-            </>
-          )}
-          {hovered?.hexLevel > 0 && (
-            <HexLevel className={getHexClass(hovered.hexLevel)}>
-              {hovered.hexLevel}
-            </HexLevel>
-          )}
-          {(hovered.location || hovered.terrainType) && (
-            <HexInfo>
-              {hovered.terrainType && (
-                <TerrainType>
-                  {hovered.terrainType === "-" || hovered.fogOfWar === "TRUE"
-                    ? "Unknown"
-                    : hovered.terrainType}
-                </TerrainType>
-              )}
-              {hovered.location && (
-                <Location>
-                  {hovered.location[0]}, {hovered.location[1]}
-                </Location>
-              )}
-            </HexInfo>
-          )}
-        </HexContainer>
-      </ReactTooltip>
+      <HexTooltip hovered={hovered} />
     </Main>
   );
 }
