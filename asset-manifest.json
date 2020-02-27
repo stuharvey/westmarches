@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/westmarches/static/css/main.75ee6dab.chunk.css",
-    "main.js": "/westmarches/static/js/main.b56aa407.chunk.js",
-    "main.js.map": "/westmarches/static/js/main.b56aa407.chunk.js.map",
+    "main.js": "/westmarches/static/js/main.66e11464.chunk.js",
+    "main.js.map": "/westmarches/static/js/main.66e11464.chunk.js.map",
     "runtime-main.js": "/westmarches/static/js/runtime-main.5f9ca8a6.js",
     "runtime-main.js.map": "/westmarches/static/js/runtime-main.5f9ca8a6.js.map",
     "static/js/2.80b6d335.chunk.js": "/westmarches/static/js/2.80b6d335.chunk.js",
     "static/js/2.80b6d335.chunk.js.map": "/westmarches/static/js/2.80b6d335.chunk.js.map",
     "index.html": "/westmarches/index.html",
-    "precache-manifest.d2b72c62379f98696e7b29c80b7d9e48.js": "/westmarches/precache-manifest.d2b72c62379f98696e7b29c80b7d9e48.js",
+    "precache-manifest.ae56cf54e3d5cc8569ac6f88249c4406.js": "/westmarches/precache-manifest.ae56cf54e3d5cc8569ac6f88249c4406.js",
     "service-worker.js": "/westmarches/service-worker.js",
     "static/css/main.75ee6dab.chunk.css.map": "/westmarches/static/css/main.75ee6dab.chunk.css.map",
     "static/js/2.80b6d335.chunk.js.LICENSE.txt": "/westmarches/static/js/2.80b6d335.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.5f9ca8a6.js",
     "static/js/2.80b6d335.chunk.js",
     "static/css/main.75ee6dab.chunk.css",
-    "static/js/main.b56aa407.chunk.js"
+    "static/js/main.66e11464.chunk.js"
   ]
 }
