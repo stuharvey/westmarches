@@ -1,12 +1,21 @@
 import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 
 import HexTooltip from "./components/HexTooltip";
 import Board from "./components/Board";
 import Navbar from "./components/Navbar";
+import Players from "./components/Players";
+import Pawn from "./components/Pawn";
+import Adventures from "./components/Adventures";
 import { Main } from "./styles";
 import { BOARD_SIZE } from "./constants";
+import { parseSheetData, zip } from "./dataUtils";
 
 const BOARD = Array(BOARD_SIZE).fill(Array(BOARD_SIZE).fill({}));
 
@@ -21,40 +30,6 @@ const TILE_URL =
 
 const TERRAIN_URL =
   "https://spreadsheets.google.com/feeds/cells/1-Oc-nzUgM8HB1S7EL9Dgs8i3KpyBC5NUe7G1Fd2KC2I/2/public/full?alt=json";
-
-function zip(listA, listB) {
-  if (listA?.length !== listB?.length) {
-    throw new Error("zip() requires two equal length arrays");
-  }
-  const zipped = {};
-  listA.forEach((key, i) => (zipped[key] = listB[i]));
-  return zipped;
-}
-
-function parseSheetData(data) {
-  // take data from the above sheet and parse it to machine readable
-  const allRows = data.reduce(
-    (currentRows, entry) => {
-      try {
-        const cell = entry["gs$cell"];
-        const row = parseInt(cell?.row, 10) - 1;
-        const val = cell.$t;
-
-        if (currentRows.length <= row) {
-          currentRows.push([]);
-        }
-        currentRows[row].push(val);
-        return currentRows;
-      } catch (e) {
-        console.error("Error parsing rows from API");
-        throw e;
-      }
-    },
-    [[]]
-  );
-  const [header, ...rows] = allRows;
-  return { header, rows };
-}
 
 function parseTileSheet(data) {
   const { header, rows: hexes } = parseSheetData(data);
@@ -116,9 +91,16 @@ function App() {
         <Navbar />
 
         <Switch>
-          <Route path="/players">Coming soon!</Route>
-          <Route path="/pawn">Coming later!</Route>
-          <Route path="/">
+          <Route path="/westmarches/players">
+            <Players />
+          </Route>
+          <Route path="/westmarches/adventures">
+            <Adventures />
+          </Route>
+          <Route path="/westmarches/pawn">
+            <Pawn />
+          </Route>
+          <Route path="/westmarches">
             <Board
               hexData={hexData}
               terrainMapping={terrainMapping}
@@ -126,6 +108,9 @@ function App() {
               onMouseOut={onMouseOut}
             />
             <HexTooltip hovered={hovered} />
+          </Route>
+          <Route path="/">
+            <Redirect to="/westmarches" />
           </Route>
         </Switch>
       </Main>

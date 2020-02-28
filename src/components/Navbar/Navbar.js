@@ -7,15 +7,18 @@ function Navbar() {
     <Nav>
       <NavItems>
         <NavItem>
-          <NavLink to="/" exact>
+          <NavLink to="/westmarches" exact>
             Map
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/players">Players</NavLink>
+          <NavLink to="/westmarches/players">Characters</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/pawn">Perenolde's Pawn Palace</NavLink>
+          <NavLink to="/westmarches/adventures">Adventures</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/westmarches/pawn">Perenolde's Pawn Palace</NavLink>
         </NavItem>
       </NavItems>
     </Nav>

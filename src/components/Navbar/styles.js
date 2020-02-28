@@ -20,7 +20,6 @@ export const NavItems = styled.ul`
 
 export const NavItem = styled.li`
   flex: 1 0 auto;
-  padding: 0 10px;
 `;
 
 export const NavLink = styled(_NavLink)`
@@ -30,13 +29,13 @@ export const NavLink = styled(_NavLink)`
   text-align: center;
   min-width: 80px;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 900;
   color: rgba(0, 0, 0, 0.54);
   font-size: 14px;
   line-height: 50px;
   height: 50px;
 
-  padding: 0 10px;
+  padding: 0 16px;
 
   &.active {
     color: rgba(0, 0, 0, 0.87);
