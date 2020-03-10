@@ -48,4 +48,4 @@ function Board({ hexData, onMouseOver, onMouseOut, terrainMapping }) {
   );
 }
 
-export default Board;
+export default React.memo(Board);
