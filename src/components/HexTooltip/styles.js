@@ -41,8 +41,12 @@ export const HexInfo = styled.footer`
 
 export const Location = styled.p`
   margin: 0;
-  font-size: 10px;
   color: rgba(0, 0, 0, 0.87);
+`;
+
+export const Curator = styled.p`
+  margin: 0;
+  font-weight: bold;
 `;
 
 export const TerrainType = styled.p`

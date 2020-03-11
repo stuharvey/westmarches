@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   background: lightgray;
-  height: 100vh;
-  width: 100vw;
+  flex: 1;
   display: flex;
 
   justify-content: center;
   align-items: center;
+
+  position: relative;
 `;

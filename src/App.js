@@ -87,9 +87,8 @@ function App() {
 
   return (
     <Router>
-      <Main>
-        <Navbar />
-
+      <Navbar />
+      <Main className="main">
         <Switch>
           <Route path="/westmarches/players">
             <Players />

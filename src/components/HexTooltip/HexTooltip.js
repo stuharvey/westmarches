@@ -8,7 +8,8 @@ import {
   Location,
   ReactTooltip,
   TerrainType,
-  HexLevel
+  HexLevel,
+  Curator
 } from "./styles";
 
 function getDifficultyClass(level = 0) {
@@ -47,6 +48,11 @@ function HexTooltip({ hovered }) {
                   : hovered.terrainType}
               </TerrainType>
             )}
+            {hovered["tile owner"] &&
+              hovered["tile owner"] !== "-" &&
+              hovered.fogOfWar !== "TRUE" && (
+                <Curator>{hovered["tile owner"]}</Curator>
+              )}
             {hovered.location && (
               <Location>
                 {hovered.location[0]}, {hovered.location[1]}

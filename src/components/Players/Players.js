@@ -17,7 +17,8 @@ import {
   Race,
   ClassLevel,
   Gold,
-  GoldContainer
+  GoldContainer,
+  PlayerName
 } from "./styles";
 
 import { parseSheetData, zip } from "../../dataUtils";
@@ -25,7 +26,35 @@ import { parseSheetData, zip } from "../../dataUtils";
 const PLAYERS_URL =
   "https://spreadsheets.google.com/feeds/cells/1EHjx9oHnOT7sRLwalgnp0DI1cXzRYYMtptOOSEdxRak/1/public/full?alt=json";
 
-const MAX_XP = 300;
+const XP_TABLE = [
+  300,
+  900,
+  2700,
+  6500,
+  14000,
+  23000,
+  34000,
+  48000,
+  64000,
+  85000,
+  100000,
+  120000,
+  140000,
+  165000,
+  195000,
+  225000,
+  265000,
+  305000,
+  355000
+];
+
+function getMaxXP(currentXP = 0) {
+  // TODO: memoize calls in a Player component
+  for (const xp of XP_TABLE) {
+    if (xp > currentXP) return xp;
+  }
+  return Infinity;
+}
 
 function parsePlayerSheet(data) {
   const { header, rows } = parseSheetData(data, { skipFirst: 1 });
@@ -67,12 +96,13 @@ function Players() {
             </MainContent>
             <XPBar>
               <p>
-                {player.xp}/{MAX_XP}
+                {player.xp}/{getMaxXP(player.xp)}
               </p>
               <TotalXP>
                 <CurrentXP
                   style={{
-                    right: `${Math.round((player.xp / MAX_XP) * 100)}%`
+                    right: `${100 -
+                      Math.round((player.xp / getMaxXP(player.xp)) * 100)}%`
                   }}
                 />
               </TotalXP>
@@ -83,6 +113,7 @@ function Players() {
                 <Gold />
               </p>
             </GoldContainer>
+            <PlayerName>{player.player}</PlayerName>
           </Player>
         </PlayerItem>
       ))}

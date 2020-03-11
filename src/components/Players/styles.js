@@ -44,6 +44,15 @@ export const Title = styled.h2`
   font-weight: bold;
 `;
 
+export const PlayerName = styled.p`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.38);
+  margin: 0;
+`;
+
 export const Description = styled.p`
   margin: 0;
   font-size: 12px;

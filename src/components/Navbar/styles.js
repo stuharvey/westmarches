@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { NavLink as _NavLink } from "react-router-dom";
 
 export const Nav = styled.nav`
-  position: absolute;
-  top: 0;
-  left: 0;
+  flex: 0 0 50px;
 `;
 
 export const NavItems = styled.ul`

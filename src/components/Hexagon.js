@@ -1,6 +1,6 @@
 import React from "react";
 
-function Hexagon({ width, className, fill = "", ...rest }) {
+function Hexagon({ width, className, fill = "", hexInfo = {}, ...rest }) {
   return (
     <svg
       {...rest}
